@@ -107,7 +107,7 @@ export const ExpensesTableColumns: ColumnDef<Expense>[] = [
 	{
 		accessorKey: "categoryName",
 		header: ({ column }) => {
-			return <ColumnSorting column={column}>Categoria</ColumnSorting>;
+			return <ColumnSorting column={column}>Responsável</ColumnSorting>;
 		},
 		cell: ({ row }) => {
 			const { userName } = row.original;

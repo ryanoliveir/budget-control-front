@@ -94,7 +94,7 @@ const CategorySelectField = ({
 							<CategoriesSearchableList
 								onSelect={(value) => {
 									const category = categories?.find(
-										(category) => category.name === value,
+										(category) => category.id === Number(value),
 									);
 
 									if (category) {

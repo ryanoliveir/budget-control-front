@@ -112,7 +112,7 @@ const StatusSelectField = ({
 							<StatusSearchableList
 								onSelect={(value) => {
 									const selectedStatus = status?.find(
-										(status) => status.name === value,
+										(status) => status.id === Number(value),
 									);
 
 									if (selectedStatus) {
