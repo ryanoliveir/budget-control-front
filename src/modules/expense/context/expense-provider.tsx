@@ -1,39 +1,38 @@
-import { createContext, ReactNode, useContext } from "react";
-import React from "react";
-import { Expense } from "../services/types";
+import { createContext, type ReactNode, useContext } from "react";
+import type { Expense } from "../services/types";
 
 interface ExpenseContextProps {
-  expense: Expense;
+	expense: Expense;
 }
 
 const ExpenseContext = createContext<ExpenseContextProps | undefined>(
-  undefined
+	undefined,
 );
 
 interface ExpenseProviderProps extends ExpenseContextProps {
-  children: ReactNode;
+	children: ReactNode;
 }
 
 const ExpenseProvider = ({ children, expense }: ExpenseProviderProps) => {
-  const value = {
-    expense,
-  };
+	const value = {
+		expense,
+	};
 
-  return (
-    <ExpenseContext.Provider value={value}>{children}</ExpenseContext.Provider>
-  );
+	return (
+		<ExpenseContext.Provider value={value}>{children}</ExpenseContext.Provider>
+	);
 };
 
 const useExpenseContext = (): ExpenseContextProps => {
-  const context = useContext(ExpenseContext);
+	const context = useContext(ExpenseContext);
 
-  if (!context) {
-    throw new Error(
-      "Expense compound components cannot be rendered outside the ExpenseProvider"
-    );
-  }
+	if (!context) {
+		throw new Error(
+			"Expense compound components cannot be rendered outside the ExpenseProvider",
+		);
+	}
 
-  return context as ExpenseContextProps;
+	return context as ExpenseContextProps;
 };
 
 export { ExpenseProvider, useExpenseContext };

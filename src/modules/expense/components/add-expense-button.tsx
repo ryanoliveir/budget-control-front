@@ -1,17 +1,15 @@
 import { forwardRef } from "react";
-import { Button, ButtonProps } from "../../core/components/ui/button";
-import React from "react";
-import { useAddExpense } from "../services";
+import { Button, type ButtonProps } from "../../core/components/ui/button";
 import { useAddExpenseFormProvider } from "../context/add-expense-form-provider";
 
 const AddExpenseButton = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ ...props }, ref) => {
-    const { setIsAddingExpense } = useAddExpenseFormProvider();
+	({ ...props }, ref) => {
+		const { setIsAddingExpense } = useAddExpenseFormProvider();
 
-    return (
-      <Button ref={ref} {...props} onClick={() => setIsAddingExpense(true)} />
-    );
-  }
+		return (
+			<Button ref={ref} {...props} onClick={() => setIsAddingExpense(true)} />
+		);
+	},
 );
 
 export default AddExpenseButton;

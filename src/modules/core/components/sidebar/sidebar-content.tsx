@@ -1,20 +1,19 @@
-import { HTMLAttributes, ReactNode } from "react";
-import { cn } from "../../lib/utils";
-import React from "react";
+import type { HTMLAttributes } from "react";
+import { cn } from "@core/lib/utils";
 
 interface SideBarContentProps extends HTMLAttributes<HTMLDivElement> {}
 
 export default function SideBarContent({
-  children,
-  className,
-  ...props
+	children,
+	className,
+	...props
 }: SideBarContentProps) {
-  return (
-    <div
-      className={cn("flex h-full w-full grow flex-col", className)}
-      {...props}
-    >
-      {children}
-    </div>
-  );
+	return (
+		<div
+			className={cn("flex h-full w-full grow flex-col", className)}
+			{...props}
+		>
+			{children}
+		</div>
+	);
 }

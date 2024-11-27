@@ -1,11 +1,10 @@
-import {
+import type {
   AxiosResponse,
   AxiosError,
   AxiosRequestConfig,
   AxiosRequestHeaders,
   AxiosInstance,
 } from "axios";
-import { api } from "./index";
 
 const onResponse = (response: AxiosResponse) => response;
 

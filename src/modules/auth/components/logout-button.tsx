@@ -1,18 +1,17 @@
 import { LogOut } from "lucide-react";
-import SidebarAction from "../../core/components/sidebar/sidebar-action";
-import React from "react";
+import SidebarAction from "@core/components/sidebar/sidebar-action";
 import { useNavigate } from "react-router-dom";
 
 const LogoutSidebarButton = () => {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  const logout = () => {
-    localStorage.removeItem("token");
+	const logout = () => {
+		localStorage.removeItem("token");
 
-    navigate("/login");
-  };
+		navigate("/login");
+	};
 
-  return <SidebarAction title="Sair" Icon={LogOut} onClick={logout} />;
+	return <SidebarAction title="Sair" Icon={LogOut} onClick={logout} />;
 };
 
 export default LogoutSidebarButton;

@@ -4,7 +4,6 @@ import "@/index.css";
 import { ThemeProvider } from "@core/components/theme-provider";
 import { ReactQueryProvider as QueryClientProvider } from "@core/lib/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./pages/home";
 import ExpensesPage from "./pages/expenses";
 import { getCookie } from "./modules/core/utils/helpers";
 import { Toaster } from "./modules/core/components/ui/sonner";
@@ -21,50 +20,54 @@ const defaultLayout = layout ? JSON.parse(layout) : undefined;
 const defaultCollapsed = collapsed ? JSON.parse(collapsed) : undefined;
 
 const App = () => {
-  const isDesktop = useMediaQuery();
+	const isDesktop = useMediaQuery();
 
-  return (
-    <React.StrictMode>
-      <QueryClientProvider>
-        <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
-          <Toaster position={isDesktop ? "bottom-right" : "top-center"} />
-          <RouterProvider router={router} />
-        </ThemeProvider>
-      </QueryClientProvider>
-    </React.StrictMode>
-  );
+	return (
+		<React.StrictMode>
+			<QueryClientProvider>
+				<ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+					<Toaster position={isDesktop ? "bottom-right" : "top-center"} />
+					<RouterProvider router={router} />
+				</ThemeProvider>
+			</QueryClientProvider>
+		</React.StrictMode>
+	);
 };
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <AuthRequired />,
-    children: [
-      {
-        path: "/",
-        element: (
-          <DashboardLayout
-            defaultLayout={defaultLayout}
-            defaultCollapsed={defaultCollapsed}
-          />
-        ),
-        children: [
-          {
-            path: "/",
-            element: <ExpensesPage />,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
-  },
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
+	{
+		path: "/",
+		element: <AuthRequired />,
+		children: [
+			{
+				path: "/",
+				element: (
+					<DashboardLayout
+						defaultLayout={defaultLayout}
+						defaultCollapsed={defaultCollapsed}
+					/>
+				),
+				children: [
+					{
+						path: "/",
+						element: <ExpensesPage />,
+					},
+				],
+			},
+		],
+	},
+	{
+		path: "/register",
+		element: <RegisterPage />,
+	},
+	{
+		path: "/login",
+		element: <LoginPage />,
+	},
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")!).render(<App />);
+const rootElement = document.getElementById("root");
+
+if (rootElement) {
+	ReactDOM.createRoot(rootElement).render(<App />);
+}
